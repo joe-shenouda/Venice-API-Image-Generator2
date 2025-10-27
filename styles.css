@@ -1,46 +1,7 @@
 /* ... (existing styles) */
 
-/* Image action buttons */
-.image-item {
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.image-item:hover .image-actions {
-    opacity: 1;
-}
-
-.image-actions {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: space-around;
-    padding: 0.5rem;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.action-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.action-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
 /* Modal styles */
+.modal,
 .upscale-modal,
 .edit-modal {
     position: fixed;
@@ -49,10 +10,16 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
+    display: none; /* Changed from flex to none */
     align-items: center;
     justify-content: center;
     z-index: 1000;
+}
+
+.modal.show,
+.upscale-modal.show,
+.edit-modal.show {
+    display: flex; /* Only show when explicitly marked as show */
 }
 
 .modal-content {
@@ -63,25 +30,6 @@
     width: 90%;
     max-height: 90%;
     overflow-y: auto;
-}
-
-.modal-content h3 {
-    margin-bottom: 1rem;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    margin-top: 1rem;
-}
-
-.mask-upload {
-    margin: 1rem 0;
-    padding: 1rem;
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    text-align: center;
 }
 
 /* ... (existing styles) */
