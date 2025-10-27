@@ -1,8 +1,62 @@
-<div class="form-group">
-                        <label for="model">Model</label>
-                        <select id="model">
-                            <option value="hidream">HiDream</option>
-                            <option value="venice-sd35">Venice SD3.5</option>
-                            <option value="lustify-sdxl">Lustify SDXL</option>
-                        </select>
-                    </div>
+<!-- Existing modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <img id="modal-img" src="" alt="">
+            <div class="modal-controls">
+                <button id="zoom-in" class="btn">+</button>
+                <button id="zoom-out" class="btn">-</button>
+                <button id="reset" class="btn">Reset</button>
+                <button id="download" class="btn">Download</button>
+                <button id="close-modal" class="btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upscale modal -->
+    <div id="upscale-modal" class="upscale-modal hidden">
+        <div class="modal-content">
+            <h3>Upscale Image</h3>
+            <div class="form-group">
+                <label for="upscale-target">Target Size</label>
+                <select id="upscale-target">
+                    <option value="2x">2x</option>
+                    <option value="4x" selected>4x</option>
+                    <option value="8x">8x</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-upscale" class="btn-secondary">Cancel</button>
+                <button id="confirm-upscale" class="btn-primary">Upscale</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit modal -->
+    <div id="edit-modal" class="edit-modal hidden">
+        <div class="modal-content">
+            <h3>Edit Image</h3>
+            <div class="form-group">
+                <label for="edit-mode">Edit Mode</label>
+                <select id="edit-mode">
+                    <option value="inpaint" selected>Inpaint</option>
+                    <option value="outpaint">Outpaint</option>
+                    <option value="replace">Replace</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="edit-instruction">Edit Instruction</label>
+                <textarea id="edit-instruction" placeholder="Describe how you want to edit the image..." rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Upload Mask</label>
+                <div class="mask-upload">
+                    <input type="file" id="mask-upload" accept="image/*">
+                    <p>Upload a mask image for the areas you want to edit</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-edit" class="btn-secondary">Cancel</button>
+                <button id="confirm-edit" class="btn-primary">Apply Edit</button>
+            </div>
+        </div>
+    </div>

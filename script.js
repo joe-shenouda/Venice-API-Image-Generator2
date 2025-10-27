@@ -1,75 +1,51 @@
-// Image generation function
-async function generateImage() {
-    if (!apiKey) {
-        showToast('API key is required', 'error');
-        return;
+// ... (existing code)
+
+// DOM elements for new modals
+const upscaleModal = document.getElementById('upscale-modal');
+const upscaleTargetSizeSelect = document.getElementById('upscale-target');
+const confirmUpscaleBtn = document.getElementById('confirm-upscale');
+const cancelUpscaleBtn = document.getElementById('cancel-upscale');
+
+const editModal = document.getElementById('edit-modal');
+const editModeSelect = document.getElementById('edit-mode');
+const editInstructionTextarea = document.getElementById('edit-instruction');
+const maskUploadInput = document.getElementById('mask-upload');
+const confirmEditBtn = document.getElementById('confirm-edit');
+const cancelEditBtn = document.getElementById('cancel-edit');
+
+let currentImageIndex = -1;
+
+// ... (existing code)
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (existing event listeners)
+    
+    // Upscale modal controls
+    confirmUpscaleBtn.addEventListener('click', () => {
+        upscaleTargetSize = upscaleTargetSizeSelect.value;
+        confirmUpscale();
+    });
+    
+    cancelUpscaleBtn.addEventListener('click', () => {
+        upscaleModal.classList.add('hidden');
+    });
+    
+    // Edit modal controls
+    confirmEditBtn.addEventListener('click', () => {
+        editMode = editModeSelect.value;
+        editInstruction = editInstructionTextarea.value;
+        confirmEdit();
+    });
+    
+    cancelEditBtn.addEventListener('click', () => {
+        editModal.classList.add('hidden');
+    });
+    
+    maskUploadInput.addEventListener('change', handleMaskUpload);
+    
+    // Get model traits on load
+    if (apiKey) {
+        getModelTraits();
     }
-    
-    const prompt = promptTextarea.value.trim();
-    if (!prompt) {
-        showToast('Please enter a prompt', 'error');
-        return;
-    }
-    
-    // Get all form values
-    const requestData = {
-        prompt: prompt,
-        negative_prompt: negativePromptTextarea.value.trim(),
-        model: modelSelect.value,
-        width: parseInt(widthSlider.value),
-        height: parseInt(heightSlider.value),
-        steps: parseInt(stepsSlider.value),
-        cfg_scale: parseFloat(cfgSlider.value),
-        seed: parseInt(seedInput.value) || undefined,
-        variants: parseInt(variantsSlider.value),
-        format: formatSelect.value,
-        safe_mode: safeModeCheckbox.checked,
-        hide_watermark: hideWatermarkCheckbox.checked,
-        embed_exif_metadata: embedMetadataCheckbox.checked,
-        lora_strength: parseInt(loraSlider.value),
-    };
-    
-    // Only add style_preset if it's not "none"
-    if (stylePresetSelect.value !== 'none') {
-        requestData.style_preset = stylePresetSelect.value;
-    }
-    
-    // Show loading state
-    generateBtn.disabled = true;
-    generateBtn.textContent = 'Generating...';
-    
-    try {
-        const response = await fetch('https://api.venice.ai/api/v1/image/generate', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestData),
-        });
-        
-        if (!response.ok) {
-            const errorData = await response.json();
-            let errorMessage = `Error: ${response.status}`;
-            
-            if (response.status === 400 && errorData.message && errorData.message.includes('model')) {
-                errorMessage = 'Invalid model selected. Please try a different model.';
-                // Reset to a default model
-                modelSelect.value = 'hidream';
-            }
-            
-            throw new Error(errorData.message || errorMessage);
-        }
-        
-        const data = await response.json();
-        displayImages(data.images, formatSelect.value);
-        showToast(`Generated ${data.images.length} image(s)`, 'success');
-        
-    } catch (error) {
-        console.error('Error generating image:', error);
-        showToast(error.message || 'Failed to generate image', 'error');
-    } finally {
-        generateBtn.disabled = false;
-        generateBtn.textContent = 'Generate Image';
-    }
-}
+});
