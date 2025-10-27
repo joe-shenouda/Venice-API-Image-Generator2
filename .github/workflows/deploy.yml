@@ -37,7 +37,7 @@ jobs:
           node-version: 20
           cache: 'npm'
       - name: Install dependencies
-        run: npm install
+        run: npm install --force
       - name: Build
         # IMPORTANT: Make sure to update vite.config.ts with your repo name!
         run: npm run build
