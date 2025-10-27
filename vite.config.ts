@@ -3,7 +3,9 @@ import dyadComponentTagger from "@dyad-sh/react-vite-component-tagger";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-export default defineConfig(() => ({
+export default defineConfig(({ command }) => ({
+  // IMPORTANT: Replace 'your-repo-name' with the actual name of your GitHub repository
+  base: command === 'build' ? '/your-repo-name/' : '/',
   server: {
     host: "::",
     port: 8080,
