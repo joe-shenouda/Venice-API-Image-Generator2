@@ -5,7 +5,7 @@ import path from "path";
 
 export default defineConfig(({ command }) => ({
   // IMPORTANT: Replace 'your-repo-name' with the actual name of your GitHub repository
-  base: command === 'build' ? '/your-repo-name/' : '/',
+  base: command === 'build' ? '/Venice-Img_GEN/' : '/',
   server: {
     host: "::",
     port: 8080,
