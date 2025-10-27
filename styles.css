@@ -1,4 +1,247 @@
-/* ... (existing styles) */
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --secondary: #6b7280;
+    --bg: #f9fafb;
+    --card: #ffffff;
+    --text: #111827;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --danger: #ef4444;
+    --success: #10b981;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+/* Card styles */
+.card {
+    background-color: var(--card);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+/* Button styles */
+.btn,
+.btn-primary,
+.btn-secondary {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: white;
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Checkbox styles */
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox input {
+    margin-right: 0.5rem;
+}
+
+/* Image grid */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+.image-item {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #f3f4f6;
+    min-height: 200px;
+}
+
+.image-item:hover .image-actions {
+    opacity: 1;
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.image-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.action-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    color: var(--text-light);
+}
+
+/* Info section */
+.info-section {
+    margin-top: 1rem;
+}
+
+.info-section ul {
+    list-style-position: inside;
+    color: var(--text-light);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1rem;
+    color: var(--text-light);
+}
+
+/* Hidden class */
+.hidden {
+    display: none !important;
+}
 
 /* Modal styles */
 .modal,
@@ -32,4 +275,71 @@
     overflow-y: auto;
 }
 
-/* ... (existing styles) */
+.modal-content img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto;
+}
+
+.modal-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Upscale and Edit modal specific styles */
+.upscale-modal .modal-content,
+.edit-modal .modal-content {
+    max-width: 400px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.mask-upload {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Toast notification styles */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--card);
+    color: var(--text);
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    z-index: 1000;
+}
+
+.toast.success {
+    border-left: 4px solid var(--success);
+}
+
+.toast.error {
+    border-left: 4px solid var(--danger);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .grid,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+}
